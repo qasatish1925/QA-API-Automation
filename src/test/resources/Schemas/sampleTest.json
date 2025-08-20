@@ -1,0 +1,16 @@
+{
+"args": {},
+"headers": {
+  "host": "postman-echo.com",
+  "x-request-start": "t1755718111.669",
+  "connection": "close",
+  "x-forwarded-proto": "https",
+  "x-forwarded-port": "443",
+  "x-amzn-trace-id": "Root=1-68a621df-28d178285efa7eab0dead547",
+  "content-type": "application/json",
+  "accept": "application/json",
+  "user-agent": "Apache-HttpClient/4.5.13 (Java/23.0.1)",
+  "accept-encoding": "gzip,deflate"
+},
+"url": "https://postman-echo.com/get"
+}
