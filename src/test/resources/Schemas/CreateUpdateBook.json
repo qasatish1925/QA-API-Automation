@@ -1,0 +1,7 @@
+{
+  "published_year": "int",
+  "name": "string",
+  "book_summary": "string",
+  "id": "int",
+  "author": "string"
+}

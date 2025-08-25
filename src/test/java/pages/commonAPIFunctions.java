@@ -16,8 +16,9 @@ import java.util.Properties;
 public class commonAPIFunctions {
 
     public static Response response;
-    static final Properties config = new Properties();
+     static final Properties config = new Properties();
     public static Map<String, Object> session = new HashMap<>();
+    public static  Map<String , String> valueStore = new HashMap<>();
 
     static {
         try {
