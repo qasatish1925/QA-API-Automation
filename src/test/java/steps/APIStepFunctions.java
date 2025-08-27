@@ -92,7 +92,6 @@ public class APIStepFunctions {
     @When("I perform Delete request for {string} endpoint")
     public void iPerformDeleteRequestForEndpoint(String endpoint) {
         if(endpoint.contains("id")) endpoint = endpoint.replaceAll("id" , commonAPIFunctions.valueStore.get("book id"));
-        System.out.println(endpoint);
         commonAPIFunctions.response = commonAPIFunctions.requestSetup().header("Authorization", "Bearer " + commonAPIFunctions.valueStore.get("access token"))
                 .when().delete(endpoint);
     }
