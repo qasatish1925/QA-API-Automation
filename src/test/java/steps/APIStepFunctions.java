@@ -56,6 +56,15 @@ public class APIStepFunctions {
                         .body(json).when().post(endPoint);
     }
 
+    @When("(I )perform PUT request for {string} endpoint with below body")
+    public void iPerformPUTRequestForEndpointWithBelowBody(String endPoint, String json) {
+        if(endPoint.contains("id")) endPoint = endPoint.replaceAll("id" , commonAPIFunctions.valueStore.get("book id"));
+        commonAPIFunctions.response =
+                commonAPIFunctions.requestSetup().header("Authorization", "Bearer " + commonAPIFunctions.valueStore.get("access token"))
+                        .body(json).when().put(endPoint);
+    }
+
+
     @Then("(I )validate response object contains the following fields")
     public void iValidateResponseObjectContainsTheFollowingFields(Map<String , String> table) {
         JsonPath jsonPathEvaluator = commonAPIFunctions.response.jsonPath();
@@ -83,7 +92,9 @@ public class APIStepFunctions {
     @When("I perform Delete request for {string} endpoint")
     public void iPerformDeleteRequestForEndpoint(String endpoint) {
         if(endpoint.contains("id")) endpoint = endpoint.replaceAll("id" , commonAPIFunctions.valueStore.get("book id"));
-        commonAPIFunctions.response = commonAPIFunctions.requestSetup().when().delete(endpoint);
+        System.out.println(endpoint);
+        commonAPIFunctions.response = commonAPIFunctions.requestSetup().header("Authorization", "Bearer " + commonAPIFunctions.valueStore.get("access token"))
+                .when().delete(endpoint);
     }
 
 
@@ -91,5 +102,11 @@ public class APIStepFunctions {
     public void iGetTheBookId() {
         JsonPath jsonPathEvaluator = commonAPIFunctions.response.jsonPath();
         commonAPIFunctions.valueStore.put("book id" , jsonPathEvaluator.get("id").toString());
+    }
+
+    @And("I wait for {int} seconds")
+    public void iWaitForSeconds(int seconds) throws InterruptedException {
+        int timeToWat = seconds * 1000;
+        Thread.sleep(timeToWat);
     }
 }

@@ -24,8 +24,8 @@ Feature: Book Management cases
     Then I get a 200 http status code
 
   @Update
-  Scenario: Update a book by id.
-    When I perform Post request for "/books" endpoint with below body
+  Scenario: Update a book by id
+    When I perform Post request for "/books/" endpoint with below body
     """
     {
     "name" : "QA API <random>",
@@ -36,7 +36,8 @@ Feature: Book Management cases
     """
     Then I get a 200 http status code
     And validate the response with Json schema "CreateUpdateBook.json"
-    When I perform Post request for "/books/id" endpoint with below body
+    And I get the book id
+    When I perform PUT request for "/books/id" endpoint with below body
     """
     {
     "name" : "QA API Update <random>",
@@ -56,7 +57,7 @@ Feature: Book Management cases
 
   @BookByID
   Scenario: Get book by id.
-    When I perform Post request for "/books" endpoint with below body
+    When I perform Post request for "/books/" endpoint with below body
     """
     {
     "name" : "QA API <random>",
@@ -66,19 +67,20 @@ Feature: Book Management cases
     }
     """
     Then I get a 200 http status code
+    And I get the book id
     When I perform GET request for "/books/id" endpoint
     Then I get a 200 http status code
     And validate the response with Json schema "AllBooks.json"
 
   @Delete
   Scenario: Delete book by id
-    When I perform Post request for "/books" endpoint with below body
+    When I perform Post request for "/books/" endpoint with below body
     """
     {
-    "name" : "QA API <random>",
-    "author" : "Satish Prasad <random>" ,
-    "published_year" : 2025,
-    "book_summary" : "QA Book <random>"
+    "name" : "QA <random>",
+    "author" : "Delete <random>" ,
+    "published_year" : 2026,
+    "book_summary" : "QA <random>"
     }
     """
     Then I get a 200 http status code
