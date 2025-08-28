@@ -80,6 +80,7 @@ public class APIStepFunctions {
     public void iVerifyMessageIsDisplayed(String message) {
         JsonPath jsonPathEvaluator = commonAPIFunctions.response.jsonPath();
         String actualMessage = jsonPathEvaluator.get("message");
+        if(actualMessage == null) actualMessage = jsonPathEvaluator.get("detail");
         Assert.assertEquals(actualMessage , message, "message does not match");
     }
 
