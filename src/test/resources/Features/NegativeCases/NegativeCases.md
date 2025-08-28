@@ -35,4 +35,6 @@
 
 ### Negative Test Cases for GET /books (Get all books)
 
+| **TC ID** | **Scenario**                               | **Input (Example)**                 | **Expected Code**     | **Expected Response**                             |
+| --------- | ------------------------------------------ | ----------------------------------- | --------------------- | ------------------------------------------------- |
 | GETALL-06 | Unauthorized access (if auth required)     | `GET /books` without token          | 401 Unauthorized      | `{ "error": "Authentication required" }`          |
